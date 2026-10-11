@@ -1,0 +1,69 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: supplybridge-api
+
+  # Default profile is postgresql for production/evaluation matching project requirements.
+  # If local PostgreSQL is not yet configured or started, testers can run with:
+  # mvn spring-boot:run -Dspring-boot.run.profiles=local
+  profiles:
+    active: postgres
+
+---
+# ---------------------------------------------------------
+# Profile: postgres (Connecting to real PostgreSQL instance)
+# ---------------------------------------------------------
+spring:
+  config:
+    activate:
+      on-profile: postgres
+  datasource:
+    url: jdbc:postgresql://localhost:5432/supplybridge_db
+    username: postgres
+    password: postgrespassword
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema-init.sql
+      data-locations: classpath:data-init.sql
+
+---
+# ---------------------------------------------------------
+# Profile: local (In-memory PostgreSQL-compatible mode for instant zero-config testing)
+# ---------------------------------------------------------
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:h2:mem:supplybridge_db;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema-init.sql
+      data-locations: classpath:data-init.sql

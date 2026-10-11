@@ -1,0 +1,38 @@
+# SupplyBridge Manual API Testing Portfolio Project
+# Git ignore configuration
+
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Maven build directory
+app/target/
+target/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.settings/
+.project/
+.classpath
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Local secrets & environment overrides (if any)
+*.env
+*.local.properties
