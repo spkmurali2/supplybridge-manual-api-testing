@@ -105,9 +105,3 @@ After cancelling the order, I checked the stock once more to verify whether it h
 | SQL queries | Queries for checking order and inventory data |
 | Defect report | Documentation for the inventory overselling defect |
 | Test summary | Test execution results and QA sign-off |
-
-## Author
-
-**Priya Murali**
-
-Manual API Testing and QA Portfolio Project
